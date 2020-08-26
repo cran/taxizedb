@@ -1,7 +1,7 @@
-0cafc23545338853ccd513d567622f78 *DESCRIPTION
+dad06f0997ea3f4323ca825718a18fc0 *DESCRIPTION
 35bd8606c71dfbfad3ad27387e177ad4 *LICENSE
 df98a1676a261351836bf336a2834dcd *NAMESPACE
-c5c0bcc771ea610bd5fe2d84648e4a25 *NEWS.md
+be5cb2e6e5ddd3eff10a7fca27c5d674 *NEWS.md
 ebf2a3d39f4a8679eee248826f71f3b2 *R/ap_children.R
 25266b0acfea6dab2b6ae6a32b1f8b02 *R/ap_classification.R
 43786e93ea2b466212b092e458e03a6e *R/ap_core.R
@@ -49,9 +49,9 @@ e1fa2b21c49cc44faa500ee859c9fd93 *tests/test-all.R
 912d81d362cce45204a2339d13bb5038 *tests/testthat/test-children.R
 2a46d5bb490dfc6380fc5adee54aa681 *tests/testthat/test-classification.R
 3641726adc33a26a157d87d605de8665 *tests/testthat/test-db_download.R
-167aaf87194eaf33537a151815f93bb5 *tests/testthat/test-downstream.R
+bb777ad671d9deb25f842259f098d130 *tests/testthat/test-downstream.R
 e1d8ffb1b9ca092e7ce28eb6f30e7d75 *tests/testthat/test-name2taxid.R
-f60559002ec375f4e09e2a75ab7a731f *tests/testthat/test-rank_utils.R
+c5b3284cb121c9ffd5f49a9917a1cc4d *tests/testthat/test-rank_utils.R
 34ea1862e7182599536b7f17ff439c2c *tests/testthat/test-realthing.R
 394127fbbe3664a778ac58c49c016bb0 *tests/testthat/test-safety.R
 02c67db28b8d4246ffbf41366945bfa8 *tests/testthat/test-sql_collect.R

@@ -5,7 +5,7 @@ Description: Tools for working with 'taxonomic' databases, including
     utilities for downloading databases, loading them into various
     'SQL' databases, cleaning up files, and providing a 'SQL' connection
     that can be used to do 'SQL' queries directly or used in 'dplyr'.
-Version: 0.2.0
+Version: 0.2.2
 Authors@R: c(
     person("Scott", "Chamberlain",
         email = "myrmecocystus+r@gmail.com", role = c("aut", "cre")),
@@ -25,9 +25,9 @@ Suggests: testthat, taxize, knitr, rmarkdown
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-08-13 19:01:28 UTC; sckott
+Packaged: 2020-08-25 19:13:52 UTC; sckott
 Author: Scott Chamberlain [aut, cre],
   Zebulun Arendsee [aut]
 Maintainer: Scott Chamberlain <myrmecocystus+r@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-08-13 19:20:03 UTC
+Date/Publication: 2020-08-26 13:40:03 UTC
