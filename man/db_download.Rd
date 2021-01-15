@@ -11,22 +11,25 @@
 \alias{db_download_wikidata}
 \title{Download taxonomic databases}
 \usage{
-db_download_ncbi(verbose = TRUE)
+db_download_ncbi(verbose = TRUE, overwrite = FALSE)
 
-db_download_itis(verbose = TRUE)
+db_download_itis(verbose = TRUE, overwrite = FALSE)
 
-db_download_tpl(verbose = TRUE)
+db_download_tpl(verbose = TRUE, overwrite = FALSE)
 
-db_download_wfo(verbose = TRUE)
+db_download_wfo(verbose = TRUE, overwrite = FALSE)
 
-db_download_col(verbose = TRUE)
+db_download_col(verbose = TRUE, overwrite = FALSE)
 
-db_download_gbif(verbose = TRUE)
+db_download_gbif(verbose = TRUE, overwrite = FALSE)
 
-db_download_wikidata(verbose = TRUE)
+db_download_wikidata(verbose = TRUE, overwrite = FALSE)
 }
 \arguments{
 \item{verbose}{(logical) Print messages. Default: \code{TRUE}}
+
+\item{overwrite}{(logical) If \code{TRUE} force an update by overwriting
+previously downloaded data. Default: \code{FALSE}}
 }
 \value{
 (character) path to the downloaded SQL database
@@ -46,6 +49,7 @@ to sql file
 
 # Plantlist
 # db_download_tpl()
+# db_download_tpl(overwrite=TRUE) # overwrite - download again
 # src_tpl()
 
 # COL
@@ -62,6 +66,7 @@ to sql file
 
 # Wikidata
 # db_download_wikidata()
+# db_download_wikidata(overwrite=TRUE) # overwrite - download again
 # src_wikidata()
 
 # World Flora Online

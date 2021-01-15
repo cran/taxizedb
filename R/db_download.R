@@ -3,6 +3,8 @@
 #' @export
 #' @name db_download
 #' @param verbose (logical) Print messages. Default: `TRUE`
+#' @param overwrite (logical) If `TRUE` force an update by overwriting
+#' previously downloaded data. Default: `FALSE`
 #' @return (character) path to the downloaded SQL database
 #' @details Downloads sql database, cleans up unneeded files, returns path
 #' to sql file
@@ -14,6 +16,7 @@
 #'
 #' # Plantlist
 #' # db_download_tpl()
+#' # db_download_tpl(overwrite=TRUE) # overwrite - download again
 #' # src_tpl()
 #'
 #' # COL
@@ -30,6 +33,7 @@
 #'
 #' # Wikidata
 #' # db_download_wikidata()
+#' # db_download_wikidata(overwrite=TRUE) # overwrite - download again
 #' # src_wikidata()
 #' 
 #' # World Flora Online
@@ -39,7 +43,7 @@
 
 #' @export
 #' @rdname db_download
-db_download_ncbi <- function(verbose = TRUE) {
+db_download_ncbi <- function(verbose = TRUE, overwrite = FALSE) {
   # set paths
   db_url <- 'ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdmp.zip'
   db_path_file <- file.path(tdb_cache$cache_path_get(), 'taxdump.zip')
@@ -48,10 +52,13 @@ db_download_ncbi <- function(verbose = TRUE) {
   ncbi_nodes_file <- file.path(db_path_dir, 'nodes.dmp')
   final_file <- file.path(tdb_cache$cache_path_get(), 'NCBI.sql')
 
-  if(file.exists(final_file)){
+  assert(verbose, "logical")
+  assert(overwrite, "logical")
+  if (file.exists(final_file) && !overwrite) {
     mssg(verbose, "Database already exists, returning old file")
     return(final_file)
   }
+  unlink(final_file, force = TRUE)
 
   # make home dir if not already present
   tdb_cache$mkdir()
@@ -208,17 +215,20 @@ db_download_ncbi <- function(verbose = TRUE) {
 
 #' @export
 #' @rdname db_download
-db_download_itis <- function(verbose = TRUE) {
+db_download_itis <- function(verbose = TRUE, overwrite = FALSE) {
   # paths
   db_url <- 'https://itis.gov/downloads/itisSqlite.zip'
   db_path <- file.path(tdb_cache$cache_path_get(), 'itisSqlite.zip')
   db_path_file <- file.path(tdb_cache$cache_path_get(), 'itisSqlite')
   final_file <- file.path(tdb_cache$cache_path_get(), 'ITIS.sqlite')
 
-  if (file.exists(final_file)) {
+  assert(verbose, "logical")
+  assert(overwrite, "logical")
+  if (file.exists(final_file) && !overwrite) {
     mssg(verbose, "Database already exists, returning old file")
     return(final_file)
   }
+  unlink(final_file, force = TRUE)
 
   # make home dir if not already present
   tdb_cache$mkdir()
@@ -244,16 +254,19 @@ db_download_itis <- function(verbose = TRUE) {
 
 #' @export
 #' @rdname db_download
-db_download_tpl <- function(verbose = TRUE) {
+db_download_tpl <- function(verbose = TRUE, overwrite = FALSE) {
   db_url <- "https://taxize-dbs.s3-us-west-2.amazonaws.com/plantlist.zip" #nolint
   db_path <- file.path(tdb_cache$cache_path_get(), 'plantlist.zip')
   db_path_file <- file.path(tdb_cache$cache_path_get(), 'plantlist')
   final_file <- file.path(tdb_cache$cache_path_get(), 'plantlist.sqlite')
 
-  if (file.exists(final_file)) {
+  assert(verbose, "logical")
+  assert(overwrite, "logical")
+  if (file.exists(final_file) && !overwrite) {
     mssg(verbose, "Database already exists, returning old file")
     return(final_file)
   }
+  unlink(final_file, force = TRUE)
 
   # make home dir if not already present
   tdb_cache$mkdir()
@@ -275,17 +288,20 @@ db_download_tpl <- function(verbose = TRUE) {
 
 #' @export
 #' @rdname db_download
-db_download_wfo <- function(verbose = TRUE) {
+db_download_wfo <- function(verbose = TRUE, overwrite = FALSE) {
   db_url <- "http://104.198.143.165/files/WFO_Backbone/_WFOCompleteBackbone/WFO_Backbone.zip" #nolint
   db_path <- file.path(tdb_cache$cache_path_get(), 'WFO_Backbone.zip')
   db_path_file <- file.path(tdb_cache$cache_path_get(), 'WFO_Backbone')
   class_file <- file.path(tdb_cache$cache_path_get(), 'WFO_Backbone/classification.txt')
   final_file <- file.path(tdb_cache$cache_path_get(), 'wfo.sqlite')
 
-  if (file.exists(final_file)) {
+  assert(verbose, "logical")
+  assert(overwrite, "logical")
+  if (file.exists(final_file) && !overwrite) {
     mssg(verbose, "Database already exists, returning old file")
     return(final_file)
   }
+  unlink(final_file, force = TRUE)
 
   # make home dir if not already present
   tdb_cache$mkdir()
@@ -358,15 +374,18 @@ db_download_wfo <- function(verbose = TRUE) {
 
 #' @export
 #' @rdname db_download
-db_download_col <- function(verbose = TRUE) {
+db_download_col <- function(verbose = TRUE, overwrite = FALSE) {
   db_url <- 'https://taxize-dbs.s3-us-west-2.amazonaws.com/col.zip'
   db_path <- file.path(tdb_cache$cache_path_get(), 'col.sqlite')
   db_path_file <- file.path(tdb_cache$cache_path_get(), 'col.zip')
 
-  if (file.exists(db_path)) {
+  assert(verbose, "logical")
+  assert(overwrite, "logical")
+  if (file.exists(db_path) && !overwrite) {
     mssg(verbose, "Database already exists, returning old file")
     return(db_path)
   }
+  unlink(db_path, force = TRUE)
 
   tdb_cache$mkdir()
   mssg(verbose, 'downloading...')
@@ -384,15 +403,18 @@ db_download_col <- function(verbose = TRUE) {
 
 #' @export
 #' @rdname db_download
-db_download_gbif <- function(verbose = TRUE) {
+db_download_gbif <- function(verbose = TRUE, overwrite = FALSE) {
   db_url <- 'https://taxize-dbs.s3-us-west-2.amazonaws.com/gbif.zip'
   db_path <- file.path(tdb_cache$cache_path_get(), 'gbif.sqlite')
   db_path_file <- file.path(tdb_cache$cache_path_get(), 'gbif.zip')
 
-  if (file.exists(db_path)) {
+  assert(verbose, "logical")
+  assert(overwrite, "logical")
+  if (file.exists(db_path) && !overwrite) {
     mssg(verbose, "Database already exists, returning old file")
     return(db_path)
   }
+  unlink(db_path, force = TRUE)
 
   tdb_cache$mkdir()
   mssg(verbose, 'downloading...')
@@ -410,16 +432,17 @@ db_download_gbif <- function(verbose = TRUE) {
 
 #' @export
 #' @rdname db_download
-db_download_wikidata <- function(verbose = TRUE) {
+db_download_wikidata <- function(verbose = TRUE, overwrite = FALSE) {
   db_url <- 'https://zenodo.org/record/1213477/files/wikidata-taxon-info20171227.tsv.gz'
 
   txt_file <- file.path(tdb_cache$cache_path_get(), 'wikidata-taxon-info20171227.tsv.gz')
   final_file <- file.path(tdb_cache$cache_path_get(), 'wikidata.sqlite')
 
-  if (file.exists(final_file)) {
+  if (file.exists(final_file) && !overwrite) {
     mssg(verbose, "Database already exists, returning old file")
     return(final_file)
   }
+  unlink(final_file, force = TRUE)
 
   tdb_cache$mkdir()
 
